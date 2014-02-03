@@ -1,12 +1,12 @@
 package org.antlr.intellij.plugin;
 
-import com.intellij.lang.annotation.AnnotationHolder;
-import com.intellij.lang.annotation.ExternalAnnotator;
-import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.TextRange;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiFile;
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import org.antlr.intellij.plugin.preview.ParseTreePanel;
 import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonToken;
@@ -26,13 +26,13 @@ import org.antlr.v4.tool.ast.GrammarRootAST;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.stringtemplate.v4.ST;
-
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import com.intellij.lang.annotation.AnnotationHolder;
+import com.intellij.lang.annotation.ExternalAnnotator;
+import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.TextRange;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiFile;
 
 public class ANTLRv4ExternalAnnotator extends ExternalAnnotator<PsiFile, List<ANTLRv4ExternalAnnotator.Issue>> {
 	public static class Issue {
@@ -43,12 +43,6 @@ public class ANTLRv4ExternalAnnotator extends ExternalAnnotator<PsiFile, List<AN
 	}
 
 	// can't use instance var as only 1 instance
-
-	/** Called first; return file; idea 12*/
-	@Nullable
-	public PsiFile collectionInformation(@NotNull PsiFile file) {
-		return file;
-	}
 
 	@Nullable
 	public PsiFile collectInformation(@NotNull PsiFile file) { // idea 13
@@ -195,7 +189,7 @@ public class ANTLRv4ExternalAnnotator extends ExternalAnnotator<PsiFile, List<AN
 
 		@Override
 		public void run() {
-			vocabName = ANTLRv4ASTFactory.findTokenVocabIfAny((ANTLRv4FileRoot) file);
+			vocabName = ANTLRv4ASTLeafFactory.findTokenVocabIfAny((ANTLRv4FileRoot) file);
 		}
 	}
 }

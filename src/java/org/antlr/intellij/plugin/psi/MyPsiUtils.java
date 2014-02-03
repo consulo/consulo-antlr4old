@@ -1,5 +1,10 @@
 package org.antlr.intellij.plugin.psi;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.antlr.intellij.plugin.ANTLRv4Language;
+import org.antlr.intellij.plugin.ANTLRv4TokenType;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
@@ -8,11 +13,7 @@ import com.intellij.psi.impl.PsiFileFactoryImpl;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiElementFilter;
 import com.intellij.psi.util.PsiTreeUtil;
-import org.antlr.intellij.plugin.ANTLRv4Language;
-import org.antlr.intellij.plugin.ANTLRv4TokenType;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.intellij.util.LanguageVersionUtil;
 
 public class MyPsiUtils {
 	public static PsiElement findRuleSpecNodeAbove(GrammarElementRefNode element, final String ruleName) {
@@ -40,7 +41,7 @@ public class MyPsiUtils {
 	{
 		PsiFileFactoryImpl factory = (PsiFileFactoryImpl)PsiFileFactory.getInstance(project);
 		PsiElement el = factory.createElementFromText(text,
-													  ANTLRv4Language.INSTANCE,
+													  ANTLRv4Language.INSTANCE, LanguageVersionUtil.findDefaultVersion(ANTLRv4Language.INSTANCE),
 													  type,
 													  context);
 		return PsiTreeUtil.getDeepestFirst(el); // forces parsing of file!!

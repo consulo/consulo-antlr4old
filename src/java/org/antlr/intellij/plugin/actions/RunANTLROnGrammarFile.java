@@ -16,7 +16,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiManager;
 import com.intellij.util.ExceptionUtil;
-import org.antlr.intellij.plugin.ANTLRv4ASTFactory;
+import org.antlr.intellij.plugin.ANTLRv4ASTLeafFactory;
 import org.antlr.intellij.plugin.ANTLRv4FileRoot;
 import org.antlr.v4.Tool;
 import org.antlr.v4.tool.ANTLRMessage;
@@ -51,7 +51,7 @@ public class RunANTLROnGrammarFile extends Task.Backgroundable {
 				String outputDirName = "gen";
 
 				// find package
-				String pack = ANTLRv4ASTFactory.findPackageIfAny(gfile);
+				String pack = ANTLRv4ASTLeafFactory.findPackageIfAny(gfile);
 				if ( pack!=null ) {
 					outputDirName += File.separator+pack.replace('.',File.separatorChar);
 				}
