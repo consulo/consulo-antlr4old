@@ -46,6 +46,7 @@
 	</actions>
 
 	<extensions defaultExtensionNs="com.intellij">
+		<errorHandler implementation="com.intellij.diagnostic.ITNReporter" />
 		<fileTypeFactory implementation="org.antlr.intellij.plugin.ANTLRv4FileTypeFactory"/>
 		<lang.syntaxHighlighterFactory key="ANTLRv4" implementationClass="org.antlr.intellij.plugin.ANTLRv4SyntaxHighlighterFactory"/>
 		<lang.parserDefinition language="ANTLRv4" implementationClass="org.antlr.intellij.plugin.ANTLRv4ParserDefinition"/>
