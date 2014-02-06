@@ -23,12 +23,15 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorFactory;
 import com.intellij.openapi.editor.event.DocumentEvent;
 import com.intellij.openapi.editor.event.DocumentListener;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Splitter;
+import com.intellij.openapi.util.Disposer;
 import com.intellij.ui.JBColor;
 import com.intellij.ui.components.JBScrollPane;
 
-public class ParseTreePanel extends JPanel implements Disposable
+public class ParseTreePanel extends JPanel
 {
+	private final Project myProject;
 	protected TreeViewer viewer;  // the antlr tree viewer component itself
 	protected JLabel startRuleLabel;
 	protected Editor editor;
@@ -41,8 +44,9 @@ public class ParseTreePanel extends JPanel implements Disposable
 	protected String grammarFileName;
 	protected String startRule;
 
-	public ParseTreePanel()
+	public ParseTreePanel(Project project)
 	{
+		myProject = project;
 		buildGUI();
 	}
 
@@ -75,6 +79,14 @@ public class ParseTreePanel extends JPanel implements Disposable
 		final EditorFactory factory = EditorFactory.getInstance();
 		Document doc = factory.createDocument(inputText);
 		editor = factory.createEditor(doc);
+		Disposer.register(myProject, new Disposable()
+		{
+			@Override
+			public void dispose()
+			{
+				factory.releaseEditor(editor);
+			}
+		});
 
 		doc.addDocumentListener(new DocumentListener()
 		{
@@ -196,11 +208,5 @@ public class ParseTreePanel extends JPanel implements Disposable
 	public JTextArea getConsole()
 	{
 		return console;
-	}
-
-	@Override
-	public void dispose()
-	{
-		EditorFactory.getInstance().releaseEditor(editor);
 	}
 }

@@ -20,17 +20,17 @@ import org.antlr.v4.tool.DefaultToolListener;
 import org.antlr.v4.tool.Grammar;
 import org.antlr.v4.tool.LexerGrammar;
 import org.antlr.v4.tool.ast.GrammarRootAST;
-import org.jetbrains.annotations.NotNull;
+import org.consulo.lombok.annotations.ProjectService;
 import org.stringtemplate.v4.ST;
-import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.roots.ProjectFileIndex;
 import com.intellij.openapi.roots.ProjectRootManager;
-import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.vfs.VirtualFile;
 
-public class ANTLRv4ProjectComponent implements ProjectComponent
+
+@ProjectService
+public class ANTLRv4ProjectComponent
 {
 	public ParseTreePanel treePanel;
 	public Project project;
@@ -38,11 +38,6 @@ public class ANTLRv4ProjectComponent implements ProjectComponent
 	public ANTLRv4ProjectComponent(Project project)
 	{
 		this.project = project;
-	}
-
-	public static ANTLRv4ProjectComponent getInstance(Project project)
-	{
-		return project.getComponent(ANTLRv4ProjectComponent.class);
 	}
 
 	public static Project getProjectForFile(VirtualFile virtualFile)
@@ -63,38 +58,11 @@ public class ANTLRv4ProjectComponent implements ProjectComponent
 
 	public ParseTreePanel getViewerPanel()
 	{
+		if(treePanel == null)
+		{
+			treePanel = new ParseTreePanel(project);
+		}
 		return treePanel;
-	}
-
-	// -------------------------------------
-
-	@Override
-	public void initComponent()
-	{
-	}
-
-	@Override
-	public void projectOpened()
-	{
-		treePanel = new ParseTreePanel();
-	}
-
-	@Override
-	public void projectClosed()
-	{
-	}
-
-	@Override
-	public void disposeComponent()
-	{
-		Disposer.dispose(treePanel);
-	}
-
-	@NotNull
-	@Override
-	public String getComponentName()
-	{
-		return "antlr.ProjectComponent";
 	}
 
 	//	private ToolWindow getToolWindow()

@@ -24,12 +24,6 @@
       ]]>
 	</change-notes>
 
-	<project-components>
-		<component>
-			<implementation-class>org.antlr.intellij.plugin.ANTLRv4ProjectComponent</implementation-class>
-		</component>
-	</project-components>
-
 	<actions>
 		<action id="antlr.Generate" class="org.antlr.intellij.plugin.actions.GenerateAction"
 				text="Generate ANTLR Recognizer">
@@ -46,6 +40,7 @@
 	</actions>
 
 	<extensions defaultExtensionNs="com.intellij">
+		<projectService serviceImplementation="org.antlr.intellij.plugin.ANTLRv4ProjectComponent" />
 		<errorHandler implementation="com.intellij.diagnostic.ITNReporter" />
 		<fileTypeFactory implementation="org.antlr.intellij.plugin.ANTLRv4FileTypeFactory"/>
 		<lang.syntaxHighlighterFactory key="ANTLRv4" implementationClass="org.antlr.intellij.plugin.ANTLRv4SyntaxHighlighterFactory"/>
