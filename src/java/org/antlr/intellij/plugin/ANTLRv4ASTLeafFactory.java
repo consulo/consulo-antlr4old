@@ -20,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTLeafFactory;
 import com.intellij.lang.ASTNode;
+import com.intellij.lang.LanguageVersion;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiWhiteSpace;
 import com.intellij.psi.impl.source.tree.LeafElement;
@@ -44,7 +45,7 @@ public class ANTLRv4ASTLeafFactory implements ASTLeafFactory
 	 */
 	@NotNull
 	@Override
-	public LeafElement createLeaf(IElementType type, CharSequence text)
+	public LeafElement createLeaf(@NotNull IElementType type, @NotNull LanguageVersion<?> languageVersion, @NotNull CharSequence text)
 	{
 		if(type == ANTLRv4TokenTypes.RULE_REF)
 		{
