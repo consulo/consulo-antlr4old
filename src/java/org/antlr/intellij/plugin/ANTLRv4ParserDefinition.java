@@ -12,18 +12,17 @@ import org.antlr.v4.runtime.atn.LexerATNSimulator;
 import org.jetbrains.annotations.NotNull;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.Language;
-import com.intellij.lang.LanguageVersion;
 import com.intellij.lang.ParserDefinition;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiParser;
 import com.intellij.lexer.Lexer;
-import com.intellij.openapi.project.Project;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
+import consulo.lang.LanguageVersion;
 
 /**
  * The general interface between IDEA and ANTLR.
@@ -34,7 +33,7 @@ public class ANTLRv4ParserDefinition implements ParserDefinition
 
 	@NotNull
 	@Override
-	public Lexer createLexer(Project project, @NotNull LanguageVersion languageVersion)
+	public Lexer createLexer(@NotNull LanguageVersion languageVersion)
 	{
 		final ANTLRv4Lexer lexer = new ANTLRv4Lexer(null);
 
@@ -46,7 +45,7 @@ public class ANTLRv4ParserDefinition implements ParserDefinition
 
 	@Override
 	@NotNull
-	public PsiParser createParser(final Project project, @NotNull LanguageVersion languageVersion)
+	public PsiParser createParser(@NotNull LanguageVersion languageVersion)
 	{
 		ANTLRv4Parser parser = new ANTLRv4Parser(null);
 		return new ParserAdaptor(parser)

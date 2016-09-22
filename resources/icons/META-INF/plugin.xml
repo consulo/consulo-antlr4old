@@ -41,7 +41,6 @@
 
 	<extensions defaultExtensionNs="com.intellij">
 		<projectService serviceImplementation="org.antlr.intellij.plugin.ANTLRv4ProjectComponent" />
-		<errorHandler implementation="com.intellij.diagnostic.ITNReporter" />
 		<fileTypeFactory implementation="org.antlr.intellij.plugin.ANTLRv4FileTypeFactory"/>
 		<lang.syntaxHighlighterFactory key="ANTLRv4" implementationClass="org.antlr.intellij.plugin.ANTLRv4SyntaxHighlighterFactory"/>
 		<lang.parserDefinition language="ANTLRv4" implementationClass="org.antlr.intellij.plugin.ANTLRv4ParserDefinition"/>
@@ -52,6 +51,7 @@
 		<externalAnnotator language="ANTLRv4" implementationClass="org.antlr.intellij.plugin.ANTLRv4ExternalAnnotator"/>
 		<lang.findUsagesProvider language="ANTLRv4"
 								 implementationClass="org.antlr.intellij.plugin.ANTLRv4FindUsagesProvider"/>
+		<iconDescriptorUpdater implementation="consulo.antlr.ANTLRv4IconDescriptorUpdater" />
 		<!--<toolWindow id="ANTLR Parse Tree" secondary="true" icon="/general/add.png"
 					anchor="bottom" factoryClass="org.antlr.intellij.plugin.preview.ParseTreeWindowFactory">
 		</toolWindow> -->

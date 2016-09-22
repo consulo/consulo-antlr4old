@@ -18,13 +18,13 @@ import org.antlr.intellij.plugin.psi.RulesNode;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
-import com.intellij.lang.ASTLeafFactory;
 import com.intellij.lang.ASTNode;
-import com.intellij.lang.LanguageVersion;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiWhiteSpace;
 import com.intellij.psi.impl.source.tree.LeafElement;
 import com.intellij.psi.tree.IElementType;
+import consulo.lang.LanguageVersion;
+import consulo.psi.tree.ASTLeafFactory;
 
 public class ANTLRv4ASTLeafFactory implements ASTLeafFactory
 {

@@ -13,7 +13,7 @@ import com.intellij.psi.impl.PsiFileFactoryImpl;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.util.PsiElementFilter;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.util.LanguageVersionUtil;
+import consulo.lang.util.LanguageVersionUtil;
 
 public class MyPsiUtils {
 	public static PsiElement findRuleSpecNodeAbove(GrammarElementRefNode element, final String ruleName) {
