@@ -1,22 +1,5 @@
 package org.antlr.intellij.plugin;
 
-import java.lang.reflect.Constructor;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.antlr.intellij.plugin.parser.ANTLRv4TokenTypes;
-import org.antlr.intellij.plugin.psi.AtAction;
-import org.antlr.intellij.plugin.psi.GrammarSpecNode;
-import org.antlr.intellij.plugin.psi.LexerRuleRefNode;
-import org.antlr.intellij.plugin.psi.LexerRuleSpecNode;
-import org.antlr.intellij.plugin.psi.MyPsiUtils;
-import org.antlr.intellij.plugin.psi.ParserRuleRefNode;
-import org.antlr.intellij.plugin.psi.ParserRuleSpecNode;
-import org.antlr.intellij.plugin.psi.RulesNode;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
@@ -25,6 +8,16 @@ import com.intellij.psi.impl.source.tree.LeafElement;
 import com.intellij.psi.tree.IElementType;
 import consulo.lang.LanguageVersion;
 import consulo.psi.tree.ASTLeafFactory;
+import org.antlr.intellij.plugin.parser.ANTLRv4TokenTypes;
+import org.antlr.intellij.plugin.psi.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ANTLRv4ASTLeafFactory implements ASTLeafFactory
 {
@@ -45,7 +38,7 @@ public class ANTLRv4ASTLeafFactory implements ASTLeafFactory
 	 */
 	@NotNull
 	@Override
-	public LeafElement createLeaf(@NotNull IElementType type, @NotNull LanguageVersion<?> languageVersion, @NotNull CharSequence text)
+	public LeafElement createLeaf(@NotNull IElementType type, @NotNull LanguageVersion languageVersion, @NotNull CharSequence text)
 	{
 		if(type == ANTLRv4TokenTypes.RULE_REF)
 		{
