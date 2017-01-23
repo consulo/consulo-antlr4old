@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
 	<id>org.antlr.intellij.plugin</id>
 	<name>ANTLR v4 grammar plugin</name>
 	<version>1.0</version>

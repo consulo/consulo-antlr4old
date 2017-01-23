@@ -20,20 +20,25 @@ import org.antlr.v4.tool.DefaultToolListener;
 import org.antlr.v4.tool.Grammar;
 import org.antlr.v4.tool.LexerGrammar;
 import org.antlr.v4.tool.ast.GrammarRootAST;
+import org.jetbrains.annotations.NotNull;
 import org.stringtemplate.v4.ST;
+import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.roots.ProjectFileIndex;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
-import consulo.lombok.annotations.ProjectService;
 
-
-@ProjectService
 public class ANTLRv4ProjectComponent
 {
+	@NotNull
+	public static ANTLRv4ProjectComponent getInstance(@NotNull Project project)
+	{
+		return ServiceManager.getService(project, ANTLRv4ProjectComponent.class);
+	}
+
 	public ParseTreePanel treePanel;
-	public Project project;
+	public final Project project;
 
 	public ANTLRv4ProjectComponent(Project project)
 	{
