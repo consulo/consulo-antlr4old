@@ -117,7 +117,7 @@ public class TestRuleAction extends AnAction implements DumbAware
 		{
 			return null; // whoa!
 		}
-		VirtualFile[] files = LangDataKeys.VIRTUAL_FILE_ARRAY.getData(e.getDataContext());
+		VirtualFile[] files = e.getData(LangDataKeys.VIRTUAL_FILE_ARRAY);
 		if(files == null)
 		{
 			return null; // no files?
