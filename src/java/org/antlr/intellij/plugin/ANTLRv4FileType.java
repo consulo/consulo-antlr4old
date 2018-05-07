@@ -1,6 +1,7 @@
 package org.antlr.intellij.plugin;
 
 import com.intellij.openapi.fileTypes.LanguageFileType;
+import consulo.ui.image.Image;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,7 +34,7 @@ public class ANTLRv4FileType extends LanguageFileType {
 
 	@Nullable
 	@Override
-	public Icon getIcon() {
+	public Image getIcon() {
 		return Icons.FILE;
 	}
 }
