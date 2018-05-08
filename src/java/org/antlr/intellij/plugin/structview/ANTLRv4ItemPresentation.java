@@ -44,11 +44,11 @@ public class ANTLRv4ItemPresentation implements ItemPresentation {
 	@Nullable
 	public Icon getIcon(boolean open) {
 		if ( element instanceof ParserRuleRefNode ) {
-			return Icons.PARSER_RULE;
+			return TargetAWT.to(Icons.PARSER_RULE);
 		}
 		if ( element instanceof ANTLRv4FileRoot ) {
 			return TargetAWT.to(Icons.FILE);
 		}
-		return Icons.LEXER_RULE;
+		return TargetAWT.to(Icons.LEXER_RULE);
 	}
 }
